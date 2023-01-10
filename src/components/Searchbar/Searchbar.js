@@ -5,22 +5,22 @@ import { toast } from 'react-toastify';
 
 export class Searchbar extends Component {
     state = {
-        imageTag: '',
+        search: '',
     };
 
     handleNameChange = event => {
-        this.setState({ imageTag: event.currentTarget.value.toLowerCase() });
+        this.setState({ search: event.currentTarget.value.toLowerCase() });
     };
 
     handleSubmit = event => {
         event.preventDefault();
 
-        if(this.state.imageTag.trim() === '') {
+        if(this.state.search.trim() === '') {
             return toast.error("You cannot search by empty field. Try again");
         }
 
-        this.props.onSubmit(this.state.imageTag);
-        this.setState({ imageTag: '' });
+        this.props.onSubmit(this.state.search);
+        this.setState({ search: '' });
     };
 
     render() {
@@ -32,12 +32,12 @@ export class Searchbar extends Component {
                     </FormButton>
 
                     <FormInput
-                        name="imageTag"
+                        name="search"
                         type="text"
                         autocomplete="off"
                         autoFocus
                         placeholder="Search images and photos"
-                        value={this.state.imageTag}
+                        value={this.state.search}
                         onChange={this.handleNameChange}
                     />
                 </Form>
